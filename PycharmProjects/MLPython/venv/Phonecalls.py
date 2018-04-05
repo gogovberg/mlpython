@@ -42,5 +42,9 @@ grid = sns.FacetGrid(train_df, col='Direction', row='CalledNetwork', size=2.2, a
 grid.map(plt.hist, 'CallDuration', alpha=.5, bins=20)
 grid.add_legend()
 
+
+outgoing_calls = train_df.loc[train_df['Direction'] == True]
+grouped_network = outgoing_calls.groupby(["CalledNetwork"]).size()
+grouped_sum_network = outgoing_calls[["CalledNetwork", 'CallDuration']].groupby(["CalledNetwork"]).sum()
 plt.show()
 
